@@ -62,7 +62,7 @@ tipo_contacto varchar(200) NOT NULL,
 primary key(id_contacto)
 );
 
-CREATE TABLE VICTIMA_TRATAMIENTO(
+CREATE TABLE VICTIMA_TRATAMIENTO(/*--------tratamiento_oersina*/
 id_victima_tratamiento int not null auto_increment,
 inicio_tratamiento datetime,
 fin_tratamiento datetime,
@@ -76,7 +76,7 @@ foreign key (id_tratamiento) references TRATAMIENTO (id_tratamiento)
 ALTER TABLE VICTIMA_TRATAMIENTO MODIFY inicio_tratamiento datetime  NULL DEFAULT '1970-01-02';
 ALTER TABLE VICTIMA_TRATAMIENTO MODIFY fin_tratamiento datetime  NULL DEFAULT '1970-01-02';
 
-CREATE TABLE UBICACION_VICTIMA(
+CREATE TABLE UBICACION_VICTIMA(/*---------ubicacion------*/
 id_ubicacion_victima int not null auto_increment,
 fecha_llegada datetime,
 fecha_salida datetime,
@@ -89,7 +89,7 @@ foreign key (id_ubicacion) references UBICACION (id_ubicacion)
 ALTER TABLE UBICACION_VICTIMA MODIFY fecha_llegada datetime  NULL DEFAULT '1970-01-02';
 ALTER TABLE UBICACION_VICTIMA MODIFY fecha_salida datetime  NULL DEFAULT '1970-01-02';
 
-CREATE TABLE ASOCIADO_VICTIMA(
+CREATE TABLE ASOCIADO_VICTIMA( /*----conocimiento--*/
 id_asociado_victima int not null auto_increment,
 fecha_contagio datetime,
 id_victima int not null,

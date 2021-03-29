@@ -45,14 +45,14 @@ INSERT INTO VICTIMA (nombre,apellido,direccion,fecha_registro,fecha_muerte,fecha
 SELECT DISTINCT Nombre_Victima,Apellido_Victima,Direccion_Victima,Fecha_Confirmacion,
 Fecha_Muerte,Fecha_Primera_Sospecha,id_hospital,Estado_Victima
 from TEMPORAL
-inner join HOSPITAL on  HOSPITAL.nombre = Nombre_hospital;
+inner join HOSPITAL on  HOSPITAL.nombre = Nombre_hospital AND HOSPITAL.direccion = TEMPORAL.Direccion_Hospital;
 select *from VICTIMA
 
 SET SQL_MODE='ALLOW_INVALID_DATES';
 INSERT INTO VICTIMA_TRATAMIENTO (inicio_tratamiento,fin_tratamiento,efectividad_victima,id_victima,id_tratamiento)
-SELECT distinct Fecha_Inicio_Tratamiento,Fecha_Fin_Tratamiento,Efectividad_En_Victima,id_victima,id_tratamiento
+SELECT distinct Fecha_Inicio_Tratamiento,Fecha_Fin_Tratamiento,Efectividad_En_Victima,VICTIMA.id_victima,TRATAMIENTO.id_tratamiento
 from TEMPORAL
-inner join VICTIMA on  VICTIMA.nombre = Nombre_Victima AND VICTIMA.apellido = Apellido_Victima
+inner join VICTIMA on  VICTIMA.nombre = TEMPORAL.Nombre_Victima AND VICTIMA.apellido = TEMPORAL.Apellido_Victima
 inner join TRATAMIENTO on TRATAMIENTO.tratamiento = TEMPORAL.Tratamiento;
 select *from VICTIMA_TRATAMIENTO
 
