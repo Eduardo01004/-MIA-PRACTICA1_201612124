@@ -1,5 +1,6 @@
 create database Practica1;
 use Practica1;
+
 DROP TABLE CONTACTO_DETALLE;
 DROP TABLE ASOCIADO_VICTIMA;
 DROP TABLE UBICACION_VICTIMA;
@@ -136,6 +137,7 @@ CREATE TABLE TEMPORAL(
     Fecha_Fin_Tratamiento       datetime,
     Efectividad_En_Victima      integer
 );
+select*from TEMPORAL;
 ALTER TABLE TEMPORAL MODIFY Fecha_Muerte datetime  NULL DEFAULT '1970-01-02';
 ALTER TABLE TEMPORAL MODIFY Fecha_Inicio_Tratamiento datetime  NULL DEFAULT '1970-01-02';
 ALTER TABLE TEMPORAL MODIFY Fecha_Muerte datetime  NULL DEFAULT '1970-01-02';
