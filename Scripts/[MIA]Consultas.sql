@@ -104,10 +104,10 @@ order by porcentaje asc;
 
 /*----------CONSULTA 10 -**********/
 
-select ANI.nombre AS Nombre, ANI.tipo_contacto as Contacto, truncate(cont/T*100,2) as Victimas
+select distinct ANI.nombre AS Nombre, ANI.tipo_contacto as Contacto, truncate(cont/T*100,2) as Victimas
 from(
-	select nombre, Max(cont) as maxi from(
-		select HOSPITAL.nombre,CONTACTO.tipo_contacto,COUNT(CONTACTO.id_contacto) AS cont
+	select distinct nombre, Max(cont) as maxi from(
+		select distinct HOSPITAL.nombre,CONTACTO.tipo_contacto, COUNT(CONTACTO.id_contacto) AS cont
         FROM HOSPITAL
         inner JOIN VICTIMA ON VICTIMA.id_hospital = HOSPITAL.id_hospital
         INNER JOIN ASOCIADO_VICTIMA ON VICTIMA.id_victima = ASOCIADO_VICTIMA.id_victima
@@ -118,7 +118,7 @@ from(
     )c2 GROUP BY nombre
 )maximos inner join 
 (
-	select HOSPITAL.nombre,COUNT(CONTACTO_DETALLE.id_contacto) AS T
+	select  distinct HOSPITAL.nombre,COUNT(CONTACTO_DETALLE.id_contacto) AS T
     FROM HOSPITAL
     inner JOIN VICTIMA ON VICTIMA.id_hospital = HOSPITAL.id_hospital
     INNER JOIN ASOCIADO_VICTIMA ON VICTIMA.id_victima = ASOCIADO_VICTIMA.id_victima
@@ -126,7 +126,7 @@ from(
     GROUP BY HOSPITAL.nombre
 )TOTALES ON TOTALES.nombre = maximos.nombre inner join 
 (
-	select HOSPITAL.nombre,CONTACTO.tipo_contacto,COUNT(CONTACTO.id_contacto) AS cont
+	select  distinct HOSPITAL.nombre,CONTACTO.tipo_contacto,COUNT(CONTACTO.id_contacto) AS cont
 	FROM HOSPITAL
 	inner JOIN VICTIMA ON VICTIMA.id_hospital = HOSPITAL.id_hospital
 	INNER JOIN ASOCIADO_VICTIMA ON VICTIMA.id_victima = ASOCIADO_VICTIMA.id_victima
